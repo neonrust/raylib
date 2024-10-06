@@ -272,6 +272,12 @@
 #define RL_TRIANGLES                            0x0004      // GL_TRIANGLES
 #define RL_QUADS                                0x0007      // GL_QUADS
 
+#define RL_LESS                                 0x0201      // GL_LESS
+#define RL_EQUAL                                0x0202      // GL_EQUAL
+#define RL_LEQUAL                               0x203       // GL_LEQUAL
+#define RL_GREATER                              0x0204      // GL_GREATER
+#define RL_NOTEQUAL                             0x0205      // RL_NOTEQUAL
+
 // GL equivalent data types
 #define RL_UNSIGNED_BYTE                        0x1401      // GL_UNSIGNED_BYTE
 #define RL_FLOAT                                0x1406      // GL_FLOAT
@@ -676,6 +682,7 @@ RLAPI void rlEnableColorBlend(void);                    // Enable color blending
 RLAPI void rlDisableColorBlend(void);                   // Disable color blending
 RLAPI void rlEnableDepthTest(void);                     // Enable depth test
 RLAPI void rlDisableDepthTest(void);                    // Disable depth test
+RLAPI void rlDepthFunc(int func);                       // Which function "depth test" uses, default: RL_LESS
 RLAPI void rlEnableDepthMask(void);                     // Enable depth write
 RLAPI void rlDisableDepthMask(void);                    // Disable depth write
 RLAPI void rlEnableBackfaceCulling(void);               // Enable backface culling
@@ -1941,6 +1948,9 @@ void rlEnableDepthTest(void) { glEnable(GL_DEPTH_TEST); }
 
 // Disable depth test
 void rlDisableDepthTest(void) { glDisable(GL_DEPTH_TEST); }
+
+// Set depth test function
+void rlDepthFunc(int func) { glDepthFunc(func); }
 
 // Enable depth write
 void rlEnableDepthMask(void) { glDepthMask(GL_TRUE); }
